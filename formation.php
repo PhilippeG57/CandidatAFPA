@@ -1,7 +1,14 @@
 <?php
     session_start();
     include('pdo.php');
-    include('header.php');
+    
+    if(!isset($_SESSION['page']) || $_SESSION['page'] == "index"){
+        header("Location: index.php");
+        exit;
+    }elseif($_SESSION['page'] != 'formation'){
+        header('Location: '.$_SESSION['page'].".php");
+        exit;
+    }
 
     $stmt = $pdo->prepare('SELECT * FROM formation');
     $stmt -> execute();
@@ -20,6 +27,9 @@
         <title>Bienvenue sur le TD que je dois faire</title>
     </head>
     <body>
+    <?php
+    include('header.php');
+    ?>
     <br>
     <img src="bande2.png" class="ml-5 mb-5">
     <br>

@@ -11,6 +11,9 @@
 
         $_SESSION['idFormation'] = $_POST['idFormation'];
 
+        if($_SESSION['page'] != 'question'){
+            $_SESSION['page'] = 'question';
+        }
         header('location:question.php');
     }
     else{

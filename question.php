@@ -2,6 +2,14 @@
 session_start();
 include('pdo.php');
 
+if(!isset($_SESSION['page']) || $_SESSION['page'] == "index"){
+    header("Location: index.php");
+    exit;
+}elseif($_SESSION['page'] != 'question'){
+    header('Location: '.$_SESSION['page'].".php");
+    exit;
+}
+
 if(!isset($_SESSION['ordreQuestion'])){
     $_SESSION['ordreQuestion']=1;
 }
@@ -23,6 +31,7 @@ $stmt->execute();
 $maQuestion = $stmt->fetch();
 $stmt->closeCursor();
 
+$_SESSION['idQuestion'] = $maQuestion['id'];
 $reponses = explode(',', $maQuestion['reponsesTotales']);
 
 $i = 1;

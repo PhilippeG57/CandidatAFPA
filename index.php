@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if(isset($_SESSION['page']) && $_SESSION['page'] != "index"){
+    header('Location: '.$_SESSION['page'].".php");
+}else{
+    $_SESSION['page'] = 'index';
+}
+
+?>
+
+
 <!doctype html>
 <html lang="fr">
     <head>

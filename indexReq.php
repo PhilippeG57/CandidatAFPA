@@ -59,6 +59,9 @@
         $_SESSION['idCandidat']=$pdo->lastInsertId();
         $req->closeCursor();
 
+        if($_SESSION['page'] != 'formation'){
+            $_SESSION['page'] = 'formation';
+        }
         header('Location:formation.php');
     }else{
         header('Location:index.php?error=email');
